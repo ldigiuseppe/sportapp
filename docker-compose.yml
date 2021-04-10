@@ -1,0 +1,49 @@
+version: "3"
+services:
+  php:
+    build:
+      context: .docker
+      dockerfile: php.Dockerfile
+    container_name: sportsapp-php
+    volumes:
+      - ".:/var/www/html"
+      - ".docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    container_name: sportsapp-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - "php"
+    volumes:
+      - ".:/var/www/html"
+      - ".docker/config/nginx:/etc/nginx/conf.d"
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    container_name: sportsapp-db
+    environment:
+      MYSQL_DATABASE: ${SS_DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${SS_DATABASE_PASSWORD}
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  my-db:
+    driver: "local"
+
+networks:
+  app-network:
+    driver: bridge
