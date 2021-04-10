@@ -41,6 +41,11 @@ class Team extends DataObject
         'Regional' => 'National',
     ];
 
+    /**
+     *  Modify CMS fields
+     *
+     * @return FieldList
+     */
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();

@@ -14,6 +14,11 @@ class InitialMigrationTask extends BuildTask
     private static $segment = 'InitialMigrationTask';
 
 
+    /**
+     * Runs the task
+     * 
+     * @param HTTPRequest $request
+     */
     public function run($request)
     {
         $blackCaps = Team::create();
