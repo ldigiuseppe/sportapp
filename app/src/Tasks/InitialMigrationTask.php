@@ -72,5 +72,6 @@ class InitialMigrationTask extends BuildTask
         $jeff->Teams()->add($wellingtonHurracanes);
         $jeff->Teams()->add($blackCaps);
         $jeff->write();
+        echo 'DONE';
     }
 }
