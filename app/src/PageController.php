@@ -3,6 +3,8 @@
 namespace {
 
     use SilverStripe\CMS\Controllers\ContentController;
+    use SportApp\DataObjects\Sportman;
+    use SportApp\DataObjects\Team;
 
     class PageController extends ContentController
     {
@@ -28,6 +30,21 @@ namespace {
             parent::init();
             // You can include any CSS or JS required by your project here.
             // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
+        }
+
+        public function getAllBlacks(): Team
+        {
+            return Team::get()->filter([
+                'Name' => 'All Blacks'
+            ])->first();
+        }
+
+        public function getJeffWilson(): Sportman
+        {
+            return Sportman::get()->filter([
+                'FirstName' => 'Jeff',
+                'LastName' => 'Wilson',
+            ])->first();
         }
     }
 }
