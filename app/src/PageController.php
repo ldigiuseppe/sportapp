@@ -32,14 +32,14 @@ namespace {
             // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
         }
 
-        public function getAllBlacks(): Team
+        public function getAllBlacks(): ?Team
         {
             return Team::get()->filter([
                 'Name' => 'All Blacks'
             ])->first();
         }
 
-        public function getJeffWilson(): Sportman
+        public function getJeffWilson(): ?Sportman
         {
             return Sportman::get()->filter([
                 'FirstName' => 'Jeff',
